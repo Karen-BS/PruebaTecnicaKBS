@@ -1,35 +1,18 @@
-package com.example.pruebatecnicakbs.model;
+package com.example.pruebatecnicakbs.dto;
 
-import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
-@Entity
-public class Consulta {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String tipoConsulta; // Ej: "pokemon", "detalle"
-
+public class ConsultaDTO {
+    private String tipoConsulta;
     private LocalDateTime fechaConsulta;
 
-    public Consulta() {
-    }
+    public ConsultaDTO() {}
 
-    public Consulta(String tipoConsulta, LocalDateTime fechaConsulta) {
+    public ConsultaDTO(String tipoConsulta, LocalDateTime fechaConsulta) {
         this.tipoConsulta = tipoConsulta;
         this.fechaConsulta = fechaConsulta;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTipoConsulta() {
