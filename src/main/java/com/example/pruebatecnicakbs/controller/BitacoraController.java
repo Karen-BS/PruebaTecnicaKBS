@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/bitacora")
 public class BitacoraController {

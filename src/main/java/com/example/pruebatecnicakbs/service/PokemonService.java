@@ -9,18 +9,13 @@ import java.time.LocalDateTime;
 
 @Service
 public class PokemonService {
-    private final String API_BASE = "https://pokeapi.co/api/v2/pokemon";
     private final RestTemplate restTemplate;
     private final ConsultaRepository consultaRepository;
+    private final String API_BASE = "https://pokeapi.co/api/v2/pokemon";
 
-    public PokemonService(ConsultaRepository consultaRepository) {
-        this.restTemplate = new RestTemplate();
+    public PokemonService(RestTemplate restTemplate, ConsultaRepository consultaRepository) {
+        this.restTemplate = restTemplate;
         this.consultaRepository = consultaRepository;
-    }
-    public String obtenerListadoPokemon(int limit, int offset) {
-        guardarConsulta("listado");
-        String url = API_BASE + "?limit=" + limit + "&offset=" + offset;
-        return restTemplate.getForObject(url, String.class);
     }
 
     public String obtenerDetallePokemon(String nombre) {
@@ -29,7 +24,13 @@ public class PokemonService {
         return restTemplate.getForObject(url, String.class);
     }
 
-    private void guardarConsulta(String tipo) {
+    void guardarConsulta(String tipo) {
         consultaRepository.save(new Consulta(tipo, LocalDateTime.now()));
+    }
+
+    public String obtenerListadoPokemon(int limit, int offset) {
+        guardarConsulta("listado");
+        String url = "https://pokeapi.co/api/v2/pokemon?limit=" + limit + "&offset=" + offset;
+        return restTemplate.getForObject(url, String.class);
     }
 }

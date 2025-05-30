@@ -3,7 +3,6 @@ package com.example.pruebatecnicakbs.controller;
 import com.example.pruebatecnicakbs.service.PokemonService;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/pokemon")
 public class PokemonController {
